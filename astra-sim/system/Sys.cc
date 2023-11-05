@@ -906,7 +906,7 @@ DataSet* Sys::generate_collective(
           continue;
         }
         pair<int, RingTopology::Direction> queue =
-            vLevels->get_next_queue_at_level(dim_mapper[dim]);
+            vLevels->get_next_queue_at_level_first(dim_mapper[dim]);
         CollectivePhase phase = generate_collective_phase(
             ComType::Reduce_Scatter,
             topology->get_basic_topology_at_dimension(
@@ -927,7 +927,7 @@ DataSet* Sys::generate_collective(
       if (dimensions_involved[dim_mapper[dim]] &&
           topology->get_num_of_nodes_in_dimension(dim_mapper[dim]) > 1) {
         pair<int, RingTopology::Direction> queue =
-            vLevels->get_next_queue_at_level(dim_mapper[dim]);
+            vLevels->get_next_queue_at_level_first(dim_mapper[dim]);
         CollectivePhase phase = generate_collective_phase(
             ComType::All_Reduce,
             topology->get_basic_topology_at_dimension(
@@ -947,7 +947,7 @@ DataSet* Sys::generate_collective(
           continue;
         }
         pair<int, RingTopology::Direction> queue =
-            vLevels->get_next_queue_at_level(dim_mapper[dim]);
+            vLevels->get_next_queue_at_level_last(dim_mapper[dim]);
         CollectivePhase phase = generate_collective_phase(
             ComType::All_Gather,
             topology->get_basic_topology_at_dimension(
